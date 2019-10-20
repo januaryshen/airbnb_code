@@ -1,7 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
+# This is my first code to implement BGD, SGD, and mini-BGD from scratch. 
+# The conversion from mathematical formula to code was fairly exiting to me.
 
 
 import numpy as np
@@ -10,17 +8,10 @@ import math
 import time
 import matplotlib.pyplot as plt
 
-
-# In[2]:
-
-
 path1 = "C:/Users/chi12/Downloads/hw4-bundle.tar/q1/data/features.txt"
 path2 = "C:/Users/chi12/Downloads/hw4-bundle.tar/q1/data/target.txt"
 x = np.matrix(np.loadtxt(path1, delimiter = ','))
 y = np.matrix(np.loadtxt(path2, delimiter = ',')).reshape(x.shape[0],1)
-
-
-# In[3]:
 
 
 def get_v_determinant(w, x, y, b):
@@ -55,9 +46,6 @@ def update_b(v_det, y):
 
 # ## 1. BGD
 
-# In[4]:
-
-
 eta_BGD = 3*pow(10, -7)
 epsilon_BGD = 0.25
 w = np.zeros(x.shape[1]).reshape(x.shape[1], 1)
@@ -90,9 +78,6 @@ print("BGD converged in", k ,"times of iteration, running %.2f" % (endT - startT
 
 
 # ## 3. Mini BGD
-
-# In[5]:
-
 
 x, y = shuffle(x, y, random_state=123)
 
@@ -138,9 +123,6 @@ print("MBGD converged in", k ,"times of iteration, running %.2f" % (endT - start
 
 # ## 2. SGD
 
-# In[6]:
-
-
 x, y = shuffle(x, y, random_state=123)
 
 eta_SGD = 0.0001
@@ -181,9 +163,6 @@ endT = time.time()
 print("SGD converged in", k ,"times of iteration, running %.2f" % (endT - startT), "seconds.")
 
 
-# In[7]:
-
-
 plt.plot(*zip(*cost_list_BGD))
 plt.plot(*zip(*cost_list_SGD))
 plt.plot(*zip(*cost_list_MBGD))
@@ -192,9 +171,6 @@ plt.xlabel("iterations")
 plt.ylabel("cost")
 plt.savefig("HW4P1.png")
 plt.show()
-
-
-# In[ ]:
 
 
 
